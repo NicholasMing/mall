@@ -6,11 +6,11 @@ import java.util.List;
 
 public interface ${ClassName}${classLastName} {
 
-	${ClassName} select${ClassName}ById(int ${PrimaryKey?uncap_first});
+	${ClassName} select${ClassName}ById(Long ${PrimaryKey?uncap_first});
 
 	List<${ClassName}> select${ClassName}List();
 
-	int deleteBy${PrimaryKey}(int ${PrimaryKey?uncap_first});
+	int deleteBy${PrimaryKey}(Long ${PrimaryKey?uncap_first});
 
 	int save${ClassName}(${ClassName} ${ClassName?uncap_first});
 

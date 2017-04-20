@@ -23,12 +23,14 @@ public class DataModel {
         String classLastName = extName.substring(0, extName.indexOf("."));
         model.put("classLastName", classLastName);
 
-        model.put("className", PropertiesUtil.getConfig("tableName"));
-        model.put("ClassName", StringUtil.underlineToCamel(PropertiesUtil.getConfig("tableName"), true));
+        model.put("tableName", PropertiesUtil.getConfig("tableName"));
+        model.put("className", PropertiesUtil.getConfig("tableName").replace(PropertiesUtil.getConfig("prefix"), ""));
+        model.put("ClassName", StringUtil.underlineToCamel(PropertiesUtil.getConfig("tableName").replace(PropertiesUtil.getConfig("prefix"), ""), true));
         model.put("primaryKey", DbUtil.primaryKey());
         model.put("PrimaryKey", StringUtil.underlineToCamel(DbUtil.primaryKey(), true));
         model.put("columnList", columnList);
         model.put("entityPackageName", PropertiesUtil.getConfig("entity.packageName"));
+        model.put("mapperPackageName", PropertiesUtil.getConfig("mapper.packageName"));
         return model;
     }
 }

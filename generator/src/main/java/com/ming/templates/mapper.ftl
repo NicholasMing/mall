@@ -15,27 +15,27 @@
                 <#if list_has_next>${list.nativeColumnName},<#else>${list.nativeColumnName}</#if>
             </#list>
     </sql>
-    <select id="select${ClassName}ById" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    <select id="select${ClassName}ById" resultMap="BaseResultMap" parameterType="java.lang.Long" >
         select
         <include refid="Base_Column_List" />
-        from ${className}
+        from ${tableName}
         where ${primaryKey}=${"#"}{${PrimaryKey?uncap_first},jdbcType=INTEGER}
     </select>
 
     <select id="select${ClassName}List" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List" />
-        from ${className}
+        from ${tableName}
     </select>
 
-    <delete id="deleteBy${PrimaryKey}" parameterType="java.lang.Integer">
-        delete from ${className}
+    <delete id="deleteBy${PrimaryKey}" parameterType="java.lang.Long">
+        delete from ${tableName}
         where ${primaryKey} =${"#"}{${PrimaryKey?uncap_first},jdbcType=INTEGER}
     </delete>
 
     <insert id="save${ClassName}" parameterType="${entityPackageName}.${ClassName}">
 
-        insert into ${className}
+        insert into ${tableName}
         <trim prefix="(" suffix=")" suffixOverrides="," >
             <#list columnList as list>
             <if test="${list.columnName} != null" >
@@ -54,7 +54,7 @@
     </insert>
 
     <update id="update${ClassName}By${PrimaryKey}" parameterType="${entityPackageName}.${ClassName}" >
-        update ${className}
+        update ${tableName}
         <set >
         <#list columnList as list>
             <#if primaryKey!=list.nativeColumnName>
@@ -70,7 +70,7 @@
     <select id="selectByCondition" parameterType="${entityPackageName}.${ClassName}" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List" />
-        from ${className}
+        from ${tableName}
         <where>
             <trim prefix="(" suffix=")" suffixOverrides="," >
             <#list columnList as list>

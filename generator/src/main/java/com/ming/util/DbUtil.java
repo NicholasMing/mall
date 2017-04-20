@@ -57,7 +57,9 @@ public class DbUtil {
         }
         return columnList;
     }
-
+    /**
+     * 主键id
+     */
     public static String primaryKey() {
         String primarKey = "";
         try {
